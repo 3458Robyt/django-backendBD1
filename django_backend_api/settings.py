@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'empleados',
     'productos',
     'usuarios',
+    'coreapi',
     'rest_framework',
+    'django_filters',
     'django_backend_api',
+    
 ]
 
 MIDDLEWARE = [
@@ -142,3 +145,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS=[
 
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+}
