@@ -79,6 +79,133 @@ class InformacionPersonalViewSet(viewsets.ViewSet):
                 'fecha_ingreso': resultado[3],
                 'eps': resultado[4],
                 'fondo_pension': resultado[5],
-                'sueldo':resultado[6]
+                'sueldo':resultado[6], 
+                'id_novedad': resultado[7],
+                'descripcion_novedad': resultado[8],
+                'fecha_novedad': resultado[9]
+
+            })
+        return processed_data
+
+    
+
+class EmpleadosNominaViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL listar_empleados")
+            resultados = cursor.fetchall()
+
+        # Procesar los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        data = self.procesar_resultados(resultados)
+
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        # Procesa los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre': resultado[1],
+                'apellido': resultado[2],
+                'nombre_cargo': resultado[3],
+                'nombre_departamento': resultado[4]
+            })
+        return processed_data
+    
+class ContarEmpleadosViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL contar_empleados")
+            resultados = cursor.fetchall()
+
+        # Procesar los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        data = self.procesar_resultados(resultados)
+
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        # Procesa los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'total_empleados': resultado[0]
+                
+            })
+        return processed_data
+    
+class CargosYPensionViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL PensionYCargo")
+            resultados = cursor.fetchall()
+
+        # Procesar los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        data = self.procesar_resultados(resultados)
+
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        # Procesa los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre': resultado[1],
+                'apellido': resultado[2],
+                'nombre_cargo': resultado[3],
+                'fondo_pension': resultado[4]
+            })
+        return processed_data
+
+class ConteoEPSViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL Conteo_EPS")
+            resultados = cursor.fetchall()
+
+        # Procesar los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        data = self.procesar_resultados(resultados)
+
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        # Procesa los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'EPS': resultado[0],
+                'total-afiliados': resultado[1],
+            })
+        return processed_data
+    
+class ConteoPensionViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL Conteo_Pension")
+            resultados = cursor.fetchall()
+
+        # Procesar los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        data = self.procesar_resultados(resultados)
+
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        # Procesa los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'entidad-pension': resultado[0],
+                'total-afiliados': resultado[1],
             })
         return processed_data
