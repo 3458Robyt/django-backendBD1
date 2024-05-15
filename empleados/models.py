@@ -45,6 +45,7 @@ class Nomina(models.Model):
         return f"Nómina {self.NominaID}"
 
 class Novedad(models.Model):
+    NovedadID = models.AutoField(primary_key=True)    
     Descripcion = models.CharField(max_length=100)
     Fecha = models.DateField()
     Empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)

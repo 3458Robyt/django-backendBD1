@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
 from .views import TaskViewSet
-from .views import DepartamentoViewSet, CargoViewSet, EmpleadoViewSet, NominaViewSet, NovedadViewSet, InformacionPersonalViewSet, EmpleadosNominaViewSet, ContarEmpleadosViewSet, CargosYPensionViewSet, ConteoEPSViewSet, ConteoPensionViewSet
+from .views import DepartamentoViewSet, CargoViewSet, EmpleadoViewSet, NominaViewSet, NovedadViewSet, InformacionPersonalViewSet, InformacionNovedadViewSet, EmpleadosNominaViewSet, ContarEmpleadosViewSet, CargosYPensionViewSet, ConteoEPSViewSet, ConteoPensionViewSet
 
 
 #Api versioning
@@ -19,6 +19,8 @@ router.register(r'novedades', NovedadViewSet, 'novedades')
 
 #Obtener información de los empleados
 router.register(r'informacion-personal', InformacionPersonalViewSet, 'informacion-personal')
+#Obtener informacion de novedades
+router.register(r'informacion-novedad', InformacionNovedadViewSet, 'informacion-novedad')
 #Datos importantes Nomina join Empleado
 router.register(r'empleados-nomina', EmpleadosNominaViewSet, 'empleados_nomina')
 #Conteo cantidad de empleados
@@ -29,7 +31,6 @@ router.register(r'cargos-pension', CargosYPensionViewSet, 'cargos-pension')
 router.register(r'conteo-eps', ConteoEPSViewSet, 'conteo-eps')
 #Conteo Pension
 router.register(r'conteo-pension', ConteoPensionViewSet, 'conteo-pension')
-
 
 
 

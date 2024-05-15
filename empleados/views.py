@@ -74,8 +74,36 @@ class InformacionPersonalViewSet(viewsets.ViewSet):
         for resultado in resultados:
             processed_data.append({
                 'empleado_id': resultado[0],
-                'departamento_id': resultado[1],
-                'cargo_id': resultado[2],
+                'nombre_departamento': resultado[1],
+                'nombre_cargo': resultado[2],
+                'fecha_ingreso': resultado[3],
+                'eps': resultado[4],
+                'fondo_pension': resultado[5],
+                'sueldo':resultado[6]
+            })
+        return processed_data
+
+class InformacionNovedadViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL informacion_novedad()")
+            resultados = cursor.fetchall()
+
+        # Procesar los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        data = self.procesar_resultados(resultados)
+
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        # Procesa los resultados según sea necesario
+        # Por ejemplo, formatearlos utilizando un serializador
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre_departamento': resultado[1],
+                'nombre_cargo': resultado[2],
                 'fecha_ingreso': resultado[3],
                 'eps': resultado[4],
                 'fondo_pension': resultado[5],
