@@ -8,7 +8,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import serializers
-
 from django.db import connection
 
 
@@ -32,7 +31,7 @@ class EmpleadoViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
 
     filterset_fields = {
-        'Cedula' : ['gte', 'lte'],
+        'EmpleadoID' : ['exact'],
     }
 
 class NominaViewSet(viewsets.ModelViewSet):
@@ -41,7 +40,7 @@ class NominaViewSet(viewsets.ModelViewSet):
 
     filter_backends = [DjangoFilterBackend]
     filterset_fields = {
-        'Fecha' : ['gte', 'lte'],
+        'FechaIngreso' : ['gte', 'lte'],
         'Empleado' :['exact'],
     }
 
@@ -120,7 +119,7 @@ class InformacionNovedadViewSet(viewsets.ViewSet):
 class EmpleadosNominaViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL listar_empleados")
+            cursor.execute("CALL listar_empleados()")
             resultados = cursor.fetchall()
 
         # Procesar los resultados según sea necesario
@@ -146,7 +145,7 @@ class EmpleadosNominaViewSet(viewsets.ViewSet):
 class ContarEmpleadosViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL contar_empleados")
+            cursor.execute("CALL contar_empleados()")
             resultados = cursor.fetchall()
 
         # Procesar los resultados según sea necesario
@@ -169,7 +168,7 @@ class ContarEmpleadosViewSet(viewsets.ViewSet):
 class CargosYPensionViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL PensionYCargo")
+            cursor.execute("CALL PensionYCargo()")
             resultados = cursor.fetchall()
 
         # Procesar los resultados según sea necesario
@@ -195,7 +194,7 @@ class CargosYPensionViewSet(viewsets.ViewSet):
 class ConteoEPSViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL Conteo_EPS")
+            cursor.execute("CALL Conteo_EPS()")
             resultados = cursor.fetchall()
 
         # Procesar los resultados según sea necesario
@@ -218,7 +217,7 @@ class ConteoEPSViewSet(viewsets.ViewSet):
 class ConteoPensionViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL Conteo_Pension")
+            cursor.execute("CALL Conteo_Pension()")
             resultados = cursor.fetchall()
 
         # Procesar los resultados según sea necesario
