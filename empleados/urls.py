@@ -5,7 +5,9 @@ from .views import (
     DepartamentoViewSet, CargoViewSet, EmpleadoViewSet, NominaViewSet,
     NovedadViewSet, InformacionPersonalViewSet, EmpleadosNominaViewSet,
     ContarEmpleadosViewSet, CargosYPensionViewSet, ConteoEPSViewSet,
-    ConteoPensionViewSet, ContarEmpleadosPorCargo, ContarEmpleadosPorDependencia
+    ConteoPensionViewSet, ContarEmpleadosPorCargo, ContarEmpleadosPorDependencia,
+    ListaEmpleadosCargoASCViewSet, ListaEmpleadosEPSASCViewSet, ListaEmpleadosNombreASCViewSet, ListaEmpleadosNombreDESCViewSet,
+
 )
 
 router = DefaultRouter()
@@ -24,6 +26,11 @@ router.register(r'conteo-eps', ConteoEPSViewSet, basename='conteo-eps')
 router.register(r'conteo-pension', ConteoPensionViewSet, basename='conteo-pension')
 router.register(r'conteo-empleados-por-cargo', ContarEmpleadosPorCargo, basename='conteo-empleados-por-cargo')
 router.register(r'conteo-empleados-por-dependencia', ContarEmpleadosPorDependencia, basename='conteo-empleados-por-dependencia')
+router.register(r'lista-empleados-por-cargoASC', ListaEmpleadosCargoASCViewSet, basename='lista-empleados-por-cargoASC')
+router.register(r'lista-empleados-por-EPSASC', ListaEmpleadosEPSASCViewSet, basename='lista-empleados-por-EPSASC')
+router.register(r'lista-empleados-por-nombreASC', ListaEmpleadosNombreASCViewSet, basename='lista-empleados-por-nombreASC')
+router.register(r'lista-empleados-por-nombreDESC', ListaEmpleadosNombreDESCViewSet, basename='lista-empleados-por-nombreDESC')
+
 
 urlpatterns = [
     path('api/empleados/', include(router.urls)),

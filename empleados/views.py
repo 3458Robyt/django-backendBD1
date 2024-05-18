@@ -181,3 +181,109 @@ class ContarEmpleadosPorCargo(viewsets.ViewSet):
             results = cursor.fetchall()
         data = [{'cargo': row[0], 'cantidad': row[1]} for row in results]
         return Response(data)
+    
+
+class ListaEmpleadosCargoASCViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL Lista_Empleados_CARGO_ASC()")
+            resultados = cursor.fetchall()
+        data = self.procesar_resultados(resultados)
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre': resultado[1],
+                'apellido': resultado[2],
+                'nombre_departamento': resultado[3],
+                'nombre_cargo': resultado[4],
+                'fecha_ingreso': resultado[5],
+                'eps': resultado[6],
+                'fondo_pension': resultado[7],
+                'sueldo': resultado[8],
+                'descripcion_novedad': resultado[9],
+                'fecha_novedad': resultado[10]
+            })
+        return processed_data
+
+class ListaEmpleadosEPSASCViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL Lista_Empleados_EPS_ASC()")
+            resultados = cursor.fetchall()
+        data = self.procesar_resultados(resultados)
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre': resultado[1],
+                'apellido': resultado[2],
+                'nombre_departamento': resultado[3],
+                'nombre_cargo': resultado[4],
+                'fecha_ingreso': resultado[5],
+                'eps': resultado[6],
+                'fondo_pension': resultado[7],
+                'sueldo': resultado[8],
+                'descripcion_novedad': resultado[9],
+                'fecha_novedad': resultado[10]
+            })
+        return processed_data
+    
+class ListaEmpleadosNombreASCViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL Lista_Empleados_NOMBRE_ASC()")
+            resultados = cursor.fetchall()
+        data = self.procesar_resultados(resultados)
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre': resultado[1],
+                'apellido': resultado[2],
+                'nombre_departamento': resultado[3],
+                'nombre_cargo': resultado[4],
+                'fecha_ingreso': resultado[5],
+                'eps': resultado[6],
+                'fondo_pension': resultado[7],
+                'sueldo': resultado[8],
+                'descripcion_novedad': resultado[9],
+                'fecha_novedad': resultado[10]
+            })
+        return processed_data
+    
+class ListaEmpleadosNombreDESCViewSet(viewsets.ViewSet):
+    def list(self, request):
+        with connection.cursor() as cursor:
+            cursor.execute("CALL Lista_Empleados_NOMBRE_DESC()")
+            resultados = cursor.fetchall()
+        data = self.procesar_resultados(resultados)
+        return Response(data)
+
+    def procesar_resultados(self, resultados):
+        processed_data = []
+        for resultado in resultados:
+            processed_data.append({
+                'empleado_id': resultado[0],
+                'nombre': resultado[1],
+                'apellido': resultado[2],
+                'nombre_departamento': resultado[3],
+                'nombre_cargo': resultado[4],
+                'fecha_ingreso': resultado[5],
+                'eps': resultado[6],
+                'fondo_pension': resultado[7],
+                'sueldo': resultado[8],
+                'descripcion_novedad': resultado[9],
+                'fecha_novedad': resultado[10]
+            })
+        return processed_data
+
