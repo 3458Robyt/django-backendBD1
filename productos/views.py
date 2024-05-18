@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import PeliculaSerializer, GeneroLibroSerializer, GeneroPeliculaSerializer, LibroSerializer, LibroAutorSerializer, LibroGeneroSerializer, AutorSerializer, PeliculaGeneroSerializer
-from .models import Pelicula, GeneroLibro, GeneroPelicula, Libro, LibroAutor, LibroGenero, Autor, PeliculaGenero
+from .serializers import PeliculaSerializer, GeneroPeliculaSerializer, PeliculaGeneroSerializer, AutorSerializer, LibroSerializer, AutorLibroSerializer
+from .models import Pelicula, GeneroPelicula, PeliculaGenero, Autor, Libro, AutorLibro
 
 class PeliculaViewSet(viewsets.ModelViewSet):
     queryset = Pelicula.objects.all()
@@ -15,23 +15,15 @@ class PeliculaGeneroViewSet(viewsets.ModelViewSet):
     queryset = PeliculaGenero.objects.all()
     serializer_class = PeliculaGeneroSerializer
 
-class LibroViewSet(viewsets.ModelViewSet):
-    queryset = Libro.objects.all()
-    serializer_class = LibroSerializer
-
-class GeneroLibroViewSet(viewsets.ModelViewSet):
-    queryset = GeneroLibro.objects.all()
-    serializer_class = GeneroLibroSerializer
-
-class LibroGeneroViewSet(viewsets.ModelViewSet):
-    queryset = LibroGenero.objects.all()
-    serializer_class = LibroGeneroSerializer
-
 class AutorViewSet(viewsets.ModelViewSet):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializer
 
-class LibroAutorViewSet(viewsets.ModelViewSet):
-    queryset = LibroAutor.objects.all()
-    serializer_class = LibroAutorSerializer
+class LibroViewSet(viewsets.ModelViewSet):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+
+class AutorLibroViewSet(viewsets.ModelViewSet):
+    queryset = AutorLibro.objects.all()
+    serializer_class = AutorLibroSerializer
 

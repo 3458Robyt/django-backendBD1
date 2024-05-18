@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pelicula, GeneroPelicula, PeliculaGenero, Autor, GeneroLibro, Libro, LibroAutor, LibroGenero
+from .models import Pelicula, GeneroPelicula, PeliculaGenero, Autor, Libro, AutorLibro
 
 # Register your models here.
 admin.site.register(Pelicula)

@@ -41,7 +41,7 @@ class NominaViewSet(viewsets.ModelViewSet):
 
     filter_backends = [DjangoFilterBackend]
     filterset_fields = {
-        'Fecha' : ['gte', 'lte'],
+        'FechaIngreso' : ['gte', 'lte'],
         'Empleado' :['exact'],
     }
 

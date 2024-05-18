@@ -33,7 +33,3 @@ class NovedadSerializer(serializers.ModelSerializer):
         model = Novedad
         fields = '__all__'
 
-class SaludYPensión(serializers.ModelSerializer):
-    class Meta:
-        model = Nomina
-        fields = ''

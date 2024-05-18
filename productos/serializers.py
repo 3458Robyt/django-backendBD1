@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Pelicula, GeneroLibro, GeneroPelicula, Libro, LibroAutor, LibroGenero, Autor, PeliculaGenero
+from .models import Pelicula, GeneroPelicula, PeliculaGenero, Autor, Libro, AutorLibro
 
 class PeliculaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,27 +16,23 @@ class PeliculaGeneroSerializer(serializers.ModelSerializer):
         model = PeliculaGenero
         fields = '__all__'
 
-class LibroSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Libro
-        fields = '__all__'
-
-class GeneroLibroSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GeneroLibro
-        fields = '__all__'
-
-class LibroGeneroSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LibroGenero
-        fields = '__all__'
-
 class AutorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Autor
         fields = '__all__'
 
-class LibroAutorSerializer(serializers.ModelSerializer):
+class LibroSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LibroAutor
+        model = Libro
         fields = '__all__'
+
+class AutorLibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AutorLibro
+        fields = '__all__'
+
+
+
+
+
+

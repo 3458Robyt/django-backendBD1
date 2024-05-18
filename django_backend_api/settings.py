@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'usuarios',
     'coreapi',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
     'django_backend_api',
     
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'django_backend_api.urls'
 
@@ -142,7 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #cors authorization
-CORS_ALLOWED_ORIGINS=[
+CORS_ALLOWED_ORIGINS=["http://localhost:5173",
 
 ]
 
@@ -151,3 +153,6 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
 }
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'https://tu-backend.com']
+CSRF_COOKIE_AGE = 3600  # Duración del CSRF token en segundos
