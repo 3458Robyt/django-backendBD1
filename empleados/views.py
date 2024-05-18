@@ -79,7 +79,7 @@ class InformacionPersonalViewSet(viewsets.ViewSet):
 class EmpleadosNominaViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL listar_empleados")
+            cursor.execute("CALL listar_empleados()")
             resultados = cursor.fetchall()
         data = self.procesar_resultados(resultados)
         return Response(data)
@@ -99,7 +99,7 @@ class EmpleadosNominaViewSet(viewsets.ViewSet):
 class ContarEmpleadosViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL contar_empleados")
+            cursor.execute("CALL contar_empleados()")
             resultados = cursor.fetchall()
         data = self.procesar_resultados(resultados)
         return Response(data)
@@ -115,7 +115,7 @@ class ContarEmpleadosViewSet(viewsets.ViewSet):
 class CargosYPensionViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL PensionYCargo")
+            cursor.execute("CALL PensionYCargo()")
             resultados = cursor.fetchall()
         data = self.procesar_resultados(resultados)
         return Response(data)
@@ -135,7 +135,7 @@ class CargosYPensionViewSet(viewsets.ViewSet):
 class ConteoEPSViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL Conteo_EPS")
+            cursor.execute("CALL Conteo_EPS()")
             resultados = cursor.fetchall()
         data = self.procesar_resultados(resultados)
         return Response(data)
@@ -152,7 +152,7 @@ class ConteoEPSViewSet(viewsets.ViewSet):
 class ConteoPensionViewSet(viewsets.ViewSet):
     def list(self, request):
         with connection.cursor() as cursor:
-            cursor.execute("CALL Conteo_Pension")
+            cursor.execute("CALL Conteo_Pension()")
             resultados = cursor.fetchall()
         data = self.procesar_resultados(resultados)
         return Response(data)
